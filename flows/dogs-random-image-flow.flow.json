@@ -1,0 +1,52 @@
+{
+  "version": "0.0.1",
+  "catchAll": {},
+  "startNode": "entry",
+  "description": "",
+  "nodes": [
+    {
+      "id": "28e2440203",
+      "name": "entry",
+      "onEnter": [],
+      "onReceive": null,
+      "next": [
+        {
+          "condition": "true",
+          "node": "get-random-dog-image-action"
+        }
+      ],
+      "type": "standard"
+    },
+    {
+      "id": "0bfdbfdcca",
+      "name": "get-random-dog-image-action",
+      "next": [
+        {
+          "condition": "session.dog_image_response !==undefined",
+          "conditionType": "props",
+          "node": "dog-image"
+        }
+      ],
+      "onEnter": [
+        "random-dog-image {}"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "54ae23034a",
+      "name": "dog-image",
+      "next": [
+        {
+          "condition": "true",
+          "node": ""
+        }
+      ],
+      "onEnter": [
+        "say #!builtin_image-5LdXWf"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    }
+  ]
+}

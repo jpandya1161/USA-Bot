@@ -1,0 +1,31 @@
+{
+  "version": "0.0.1",
+  "catchAll": {
+    "next": []
+  },
+  "startNode": "entry",
+  "skillData": {
+    "method": "get",
+    "memory": "session",
+    "randomId": "",
+    "body": "{\nContent-Type: application/json\n}",
+    "url": "https://datausa.io/api/data?drilldowns=Nation&measures=Population&year={{event.payload.text}}",
+    "variable": "population_response",
+    "invalidJson": false
+  },
+  "nodes": [
+    {
+      "name": "entry",
+      "onEnter": [
+        "basic-skills/call_api {\"randomId\":\"\",\"url\":\"https://datausa.io/api/data?drilldowns=Nation&measures=Population&year={{event.payload.text}}\",\"method\":\"get\",\"body\":\"{\\nContent-Type: application/json\\n}\",\"memory\":\"session\",\"variable\":\"population_response\"}"
+      ],
+      "next": [
+        {
+          "condition": "true",
+          "node": "#"
+        }
+      ],
+      "id": "180135"
+    }
+  ]
+}

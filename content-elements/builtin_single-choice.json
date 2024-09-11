@@ -1,0 +1,26 @@
+[
+  {
+    "id": "builtin_single-choice-aMlDl7",
+    "formData": {
+      "dropdownPlaceholder$en": "Select...",
+      "choices$en": [
+        {
+          "title": "Getting USA Population data! ",
+          "value": "get-usa-population"
+        },
+        {
+          "title": "Getting Random Dog image!!!!",
+          "value": "get-random-dog-iamge"
+        }
+      ],
+      "markdown$en": true,
+      "disableFreeText$en": false,
+      "typing$en": true,
+      "text$en": "How can I help you?",
+      "isDropdown$en": true
+    },
+    "createdBy": "admin",
+    "createdOn": "2023-06-23T07:02:45.652Z",
+    "modifiedOn": "2023-06-23T07:10:01.563Z"
+  }
+]

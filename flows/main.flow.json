@@ -1,0 +1,49 @@
+{
+  "version": "0.0.1",
+  "catchAll": {
+    "onReceive": [],
+    "next": []
+  },
+  "startNode": "entry",
+  "nodes": [
+    {
+      "id": "entry",
+      "name": "entry",
+      "next": [
+        {
+          "condition": "true",
+          "conditionType": "always",
+          "node": "choice"
+        }
+      ],
+      "onEnter": [],
+      "onReceive": null
+    },
+    {
+      "id": "skill-70b7ac",
+      "type": "skill-call",
+      "skill": "choice",
+      "name": "choice",
+      "flow": "skills/choice-70b7ac.flow.json",
+      "next": [
+        {
+          "caption": "User picked [get-usa...]",
+          "condition": "temp['skill-choice-ret-z7f13rxr4r'] == \"get-usa-population\"",
+          "node": "usa-population-flow.flow.json"
+        },
+        {
+          "caption": "User picked [get-ran...]",
+          "condition": "temp['skill-choice-ret-z7f13rxr4r'] == \"get-random-dog-iamge\"",
+          "node": "dogs-random-image-flow.flow.json"
+        },
+        {
+          "caption": "On failure",
+          "condition": "true",
+          "node": ""
+        }
+      ],
+      "onEnter": null,
+      "onReceive": null
+    }
+  ]
+}

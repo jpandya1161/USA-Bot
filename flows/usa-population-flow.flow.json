@@ -1,0 +1,127 @@
+{
+  "version": "0.0.1",
+  "catchAll": {
+    "onReceive": [],
+    "next": []
+  },
+  "startNode": "entry",
+  "nodes": [
+    {
+      "id": "780f5ff3f3",
+      "name": "entry",
+      "next": [
+        {
+          "condition": "true",
+          "node": "welcome-message"
+        }
+      ],
+      "onEnter": [],
+      "onReceive": null
+    },
+    {
+      "id": "3fd4091e78",
+      "type": "skill-call",
+      "skill": "CallAPI",
+      "name": "usa-population-api",
+      "flow": "skills/CallAPI-fbd582.flow.json",
+      "next": [
+        {
+          "caption": "On success",
+          "condition": "temp.valid",
+          "node": "print-usa-population"
+        },
+        {
+          "caption": "On failure",
+          "condition": "!temp.valid",
+          "node": "error-fetch-population"
+        }
+      ],
+      "onEnter": null,
+      "onReceive": null
+    },
+    {
+      "id": "ceae130648",
+      "name": "print-usa-population",
+      "next": [
+        {
+          "condition": "true",
+          "node": ""
+        }
+      ],
+      "onEnter": [
+        "say #!builtin_text-Z1rpsZ"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "4e6c89abfd",
+      "name": "error-fetch-population",
+      "next": [
+        {
+          "condition": "true",
+          "node": ""
+        }
+      ],
+      "onEnter": [
+        "say #!builtin_text-FbODsS"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "26ec7d90f9",
+      "name": "welcome-message",
+      "next": [
+        {
+          "condition": "true",
+          "conditionType": "always",
+          "node": "validate-user-input"
+        }
+      ],
+      "onEnter": [
+        "say #!builtin_text-7gECGA",
+        "say #!builtin_text-uZ4s-L"
+      ],
+      "onReceive": [],
+      "type": "standard"
+    },
+    {
+      "id": "6b4cac7253",
+      "name": "validate-user-input",
+      "next": [
+        {
+          "condition": "session.is_valid_year ==true",
+          "conditionType": "props",
+          "node": "usa-population-api"
+        },
+        {
+          "condition": "session.is_valid_year ==false",
+          "conditionType": "props",
+          "node": "invalid-year-value"
+        }
+      ],
+      "onEnter": [
+        "validate-year {\"year\":\"{{event.payload.text}}\"}"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "2707cdf1ac",
+      "name": "invalid-year-value",
+      "next": [
+        {
+          "condition": "true",
+          "conditionType": "always",
+          "node": "validate-user-input"
+        }
+      ],
+      "onEnter": [
+        "say #!builtin_text-YHZXsc"
+      ],
+      "onReceive": [],
+      "type": "standard"
+    }
+  ]
+}

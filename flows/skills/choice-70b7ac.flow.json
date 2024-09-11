@@ -1,0 +1,106 @@
+{
+  "version": "0.0.1",
+  "catchAll": {
+    "next": []
+  },
+  "startNode": "entry",
+  "skillData": {
+    "randomId": "z7f13rxr4r",
+    "contentId": "builtin_single-choice-aMlDl7",
+    "invalidContentId": "builtin_text-hpsukR",
+    "keywords": {
+      "get-usa-population": [
+        "get-usa-population",
+        "Getting USA Population data! ",
+        "usa",
+        "population"
+      ],
+      "get-random-dog-iamge": [
+        "get-random-dog-iamge",
+        "Getting Random Dog image!!!!",
+        "dog"
+      ]
+    },
+    "config": {
+      "nbMaxRetries": 2,
+      "repeatChoicesOnInvalid": true,
+      "variableName": ""
+    }
+  },
+  "nodes": [
+    {
+      "name": "entry",
+      "onEnter": [
+        "builtin/setVariable {\"type\":\"temp\",\"name\":\"skill-choice-invalid-count-z7f13rxr4r\",\"value\": 0}",
+        "builtin/setVariable {\"type\":\"temp\",\"name\":\"skill-choice-valid-z7f13rxr4r\",\"value\": null}",
+        "builtin/setVariable {\"type\":\"temp\",\"name\":\"skill-choice-ret-z7f13rxr4r\",\"value\": null}",
+        "say #!builtin_single-choice-aMlDl7 {\"skill\":\"choice\"}"
+      ],
+      "next": [
+        {
+          "condition": "true",
+          "node": "parse"
+        }
+      ],
+      "id": "625645"
+    },
+    {
+      "name": "parse",
+      "onReceive": [
+        "basic-skills/choice_parse_answer {\"randomId\":\"z7f13rxr4r\",\"contentId\":\"builtin_single-choice-aMlDl7\",\"invalidContentId\":\"builtin_text-hpsukR\",\"keywords\":{\"get-usa-population\":[\"get-usa-population\",\"Getting USA Population data! \",\"usa\",\"population\"],\"get-random-dog-iamge\":[\"get-random-dog-iamge\",\"Getting Random Dog image!!!!\",\"dog\"]},\"config\":{\"nbMaxRetries\":2,\"repeatChoicesOnInvalid\":true,\"variableName\":\"\"}}"
+      ],
+      "next": [
+        {
+          "condition": "temp['skill-choice-valid-z7f13rxr4r'] === true",
+          "node": "#"
+        },
+        {
+          "condition": "true",
+          "node": "invalid"
+        }
+      ],
+      "triggers": [
+        {
+          "conditions": [
+            {
+              "id": "always"
+            }
+          ]
+        }
+      ],
+      "onEnter": [],
+      "id": "542850"
+    },
+    {
+      "name": "invalid",
+      "onEnter": [
+        "basic-skills/choice_invalid_answer {\"randomId\":\"z7f13rxr4r\"}"
+      ],
+      "next": [
+        {
+          "condition": "Number(temp['skill-choice-invalid-count-z7f13rxr4r']) > Number(2)",
+          "node": "#"
+        },
+        {
+          "condition": "true",
+          "node": "sorry"
+        }
+      ],
+      "id": "420976"
+    },
+    {
+      "name": "sorry",
+      "onEnter": [
+        "say #!builtin_text-hpsukR {}",
+        "say #!builtin_single-choice-aMlDl7 {\"skill\":\"choice\"}"
+      ],
+      "next": [
+        {
+          "condition": "true",
+          "node": "parse"
+        }
+      ],
+      "id": "507130"
+    }
+  ]
+}

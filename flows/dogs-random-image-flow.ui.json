@@ -1,0 +1,57 @@
+{
+  "nodes": [
+    {
+      "id": "28e2440203",
+      "position": {
+        "x": -55,
+        "y": 45
+      }
+    },
+    {
+      "id": "0bfdbfdcca",
+      "position": {
+        "x": 185,
+        "y": 75
+      }
+    },
+    {
+      "id": "54ae23034a",
+      "position": {
+        "x": 180,
+        "y": 225
+      }
+    }
+  ],
+  "links": [
+    {
+      "source": "0bfdbfdcca",
+      "sourcePort": "out0",
+      "target": "54ae23034a",
+      "points": [
+        {
+          "x": 385,
+          "y": 157
+        },
+        {
+          "x": 180,
+          "y": 242
+        }
+      ]
+    },
+    {
+      "source": "28e2440203",
+      "sourcePort": "out0",
+      "target": "0bfdbfdcca",
+      "points": [
+        {
+          "x": 145,
+          "y": 89
+        },
+        {
+          "x": 185,
+          "y": 92
+        }
+      ]
+    }
+  ]
+}
